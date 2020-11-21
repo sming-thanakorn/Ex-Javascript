@@ -1,0 +1,53 @@
+<script>
+    // Pure Function
+    function PureFunction_Add(a, b){
+        b++
+        return a + b
+    }
+    console.log('PureFunction_Add : ', PureFunction_Add(3, 4))
+
+    function Click_PureFunction_Add(){
+        console.log('Click_PureFunction_Add : ', PureFunction_Add(3, 4))
+    }
+
+
+    // Side Effect
+    // const b = new Date().getDate()
+    let b = 4
+    let x = "True"
+    function SideEffect_Add(a){
+        x === "True" ? x = "False" : x = "True"
+        b++
+        return a + b
+    }
+    console.log('SideEffect_Add : ', SideEffect_Add(3), " : X : ", x)
+
+    function Click_SideEffect_Add(){
+        console.log('Click_SideEffect_Add : ', SideEffect_Add(3), " : X : ", x)
+    }
+    
+
+
+
+
+    document.body = document.createElement("body");
+    const Arr = ["PureFunction_Add", "SideEffect_Add"]
+    for(i=0; i<Arr.length; i++){
+        const btn = document.createElement("button")
+        const textNode = document.createTextNode(Arr[i])
+        btn.appendChild(textNode)
+        // btn.innerHTML = Arr[i]
+        if(Arr[i] === "PureFunction_Add"){
+            btn.addEventListener("click", Click_PureFunction_Add, false)
+        }
+        if(Arr[i] === "SideEffect_Add"){
+            btn.addEventListener("click", Click_SideEffect_Add, false)
+        }
+        i > 0 ? document.body.appendChild(document.createElement("hr")) : null;
+        document.body.appendChild(btn)
+    }
+
+
+    
+    
+</script>

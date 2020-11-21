@@ -1,0 +1,171 @@
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<style>
+    .xpadding{
+        padding:50px;
+    }
+    .xcenter{
+        text-align:center;
+    }
+    .paddingx{
+        padding-bottom:10px;
+    }
+    .maxwidth{
+        width:60px;
+    }
+    .left{
+        text-align:left;
+    }
+
+</style>
+
+<div class="xpadding xcenter">
+
+<div class="row paddingx ">
+    <div class="col-md-4  ">
+        <div class="col-md-6 " style="padding-left:20px; padding-right:0;" >
+            <input type="text" id="inputVariable" class="form-control" value="" readonly pattern="" title="">
+            <input type="text" id="resultx" style="display:none" class="form-control" value="" readonly required="required" pattern="" title="">
+        </div>
+        <div  class="col-md-1 "  >
+            <button type="button" id="clear" class="btn btn-danger ">Clear</button>
+        </div>
+    </div>
+</div>
+
+    <div class="row paddingx">
+        <div class="col-md-3  ">
+            <button type="button" id="1" class="btn btn-default maxwidth ">1</button>
+            <button type="button" id="2" class="btn btn-default maxwidth ">2</button>
+            <button type="button" id="3" class="btn btn-default maxwidth ">3</button>
+            <button type="button" id="+" class="btn btn-default maxwidth ">+</button>
+        </div>
+    </div>
+    <div class="row paddingx">
+        <div class="col-md-3  ">
+            <button type="button" id="4" class="btn btn-default maxwidth ">4</button>
+            <button type="button" id="5" class="btn btn-default maxwidth ">5</button>
+            <button type="button" id="6" class="btn btn-default maxwidth ">6</button>
+            <button type="button" id="-" class="btn btn-default maxwidth ">-</button>
+        </div>
+    </div>
+    <div class="row paddingx">
+        <div class="col-md-3  ">
+            <button type="button" id="7" class="btn btn-default maxwidth ">7</button>
+            <button type="button" id="8" class="btn btn-default maxwidth ">8</button>
+            <button type="button" id="9" class="btn btn-default maxwidth ">9</button>
+            <button type="button" id="x" class="btn btn-default maxwidth ">x</button>
+        </div>
+    </div>
+    <div class="row paddingx">
+        <div class="col-md-3  ">
+            <button type="button" id="0" class="btn btn-default maxwidth ">0</button>
+            <button type="button" id="deci" class="btn btn-default maxwidth ">.</button>
+            <button type="button" id="cal" class="btn btn-success maxwidth">=</button>
+            <button type="button" id="/" class="btn btn-default maxwidth ">/</button>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    // Declare Global Variable
+    let Number1 = 0;
+    let Operationx = "";
+    let Number2 = 0;
+    // let ClearAfterCal = false;
+
+    // Selected InputText
+    const inputVariable = document.getElementById("inputVariable")
+    const resultx = document.getElementById("resultx")
+    
+
+    //Function Add Value
+    const ClickFn = ()=>{
+        inputVariable.style.display = "";
+        resultx.style.display = "none";
+        
+        let valueTmp
+        const Clicked = event.target.id
+
+        switch(Clicked){
+            case "deci":
+                valueTmp = "."
+                break
+            case "x":
+                valueTmp = "*"
+                break
+            default:
+                valueTmp = Clicked
+
+        }
+
+        if (valueTmp ==='+' || valueTmp ==='-' || valueTmp ==='*' || valueTmp ==="/"){
+            Number1 = parseFloat(inputVariable.value)
+            Operationx = valueTmp
+        }else{
+            Operationx ? Number2 = parseFloat(valueTmp) : Number2 = 0
+        }
+
+        inputVariable.value += valueTmp
+        
+    }
+
+    const Calculate = ()=>{
+        let SumValue = 0;
+        switch (Operationx) {
+            case "+":
+                SumValue = Number1 + Number2
+                break;
+            case "-":
+                SumValue = Number1 - Number2
+                break;
+            case "*":
+                SumValue = Number1 * Number2
+                break;
+            case "/":
+                SumValue = Number1 / Number2
+                break;
+            default:
+                break;
+        }
+
+        if(SumValue === 0 ) return false
+        
+        Number1 = 0
+        Number2 = 0
+        Operationx = ""
+        inputVariable.value = ""
+        resultx.value = SumValue
+        inputVariable.style.display = "none";
+        resultx.style.display = "";
+        return false
+    }
+
+    // Function ClearValue
+    const ClearValue = ()=>{
+        inputVariable.value = ""
+        resultx.value = ""
+    }
+
+    // Selected All Btn
+    const Childx = document.querySelectorAll("button")
+    // Add Event Click To All Btn
+    for(let x=0; x<Childx.length; x++){
+        if (Childx[x].id === "clear"){
+            Childx[x].addEventListener("click", ClearValue, false)
+            continue
+        }
+        if (Childx[x].id === "cal"){
+            Childx[x].addEventListener("click", Calculate, false)
+            continue
+        }
+        Childx[x].addEventListener("click", ClickFn, false)
+    }
+
+
+</script>
