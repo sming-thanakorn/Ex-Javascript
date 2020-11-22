@@ -28,26 +28,65 @@
     
 
 
-
     // Response DOM HTML
-    document.body = document.createElement("body");
-    const Arr = ["PureFunction_Add", "SideEffect_Add"]
-    for(i=0; i<Arr.length; i++){
-        const btn = document.createElement("button")
-        const textNode = document.createTextNode(Arr[i])
-        btn.appendChild(textNode)
-        // btn.innerHTML = Arr[i]
-        if(Arr[i] === "PureFunction_Add"){
-            btn.addEventListener("click", Click_PureFunction_Add, false)
+    document.body = document.createElement("body")
+    const Arr_Btn = ["PureFunction_Add", "SideEffect_Add"]
+
+    const CreateHTML = (argArr, argFnPure, argFnSideEff)=>{
+        const Arr = argArr
+        for(i=0; i<Arr.length; i++){
+            const btn = document.createElement("button")
+            const textNode = document.createTextNode(Arr[i])
+            btn.appendChild(textNode)
+            // btn.innerHTML = Arr[i]
+            if(Arr[i] === "PureFunction_Add"){
+                btn.addEventListener("click", argFnPure, false)
+            }
+            if(Arr[i] === "SideEffect_Add"){
+                btn.addEventListener("click", argFnSideEff, false)
+            }
+            i > 0 ? document.body.appendChild(document.createElement("hr")) : null;
+            document.body.appendChild(btn)
         }
-        if(Arr[i] === "SideEffect_Add"){
-            btn.addEventListener("click", Click_SideEffect_Add, false)
+    }
+    
+    // Call Function Generate HTML
+    CreateHTML(Arr_Btn, Click_PureFunction_Add, Click_SideEffect_Add)
+
+
+
+
+
+
+
+
+    // FirstClassFunction
+
+    // Assign Fn to Variable
+    const FirstC_AssignFunction = (a, b)=>{
+        return a + b
+    }
+    console.log('FirstC_AssignFunction : ', FirstC_AssignFunction(3, 5))
+    
+    // Return Function Output
+    const FirstC_AddReturnFN = (a, b)=>{
+        return ()=>{
+           return a + b
         }
-        i > 0 ? document.body.appendChild(document.createElement("hr")) : null;
-        document.body.appendChild(btn)
+    }
+    const FirstC_CallReturnFN = FirstC_AddReturnFN(3, 5)
+    console.log('FirstC_CallReturnFN - ReturnFN : ', FirstC_CallReturnFN)
+    console.log('FirstC_CallReturnFN : ', FirstC_CallReturnFN())
+
+
+    // Pass Function as Agrument
+    const FirstC_Add = (a, b)=>{
+        return a + b
     }
 
-
-    
+    const FirstC_PassAgr = (agrFunction, a, b)=>{
+        return agrFunction(a, b)
+    }
+    console.log('FirstC_PassAgr : ', FirstC_PassAgr(FirstC_Add, 3, 5))
     
 </script>
