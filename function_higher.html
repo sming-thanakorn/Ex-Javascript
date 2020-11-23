@@ -1,0 +1,47 @@
+<script>
+    
+    // console.log(Math.floor(Math.random() * 100))
+
+    const grades = [
+        {name: 'John', grade: 8, sex: 'M'},
+        {name: 'Sarah', grade: 12, sex: 'F'},
+        {name: 'Bob', grade: 16, sex: 'M'},
+        {name: 'Johnny', grade: 2, sex: 'M'},
+        {name: 'Ethan', grade: 4, sex: 'M'},
+        {name: 'Paula', grade: 18, sex: 'F'},
+        {name: 'Donald', grade: 5, sex: 'M'},
+        {name: 'Jennifer', grade: 13, sex: 'F'},
+        {name: 'Courtney', grade: 15, sex: 'F'},
+        {name: 'Jane', grade: 9, sex: 'F'}
+    ]
+
+    // Filter Function
+    const isGirl = student => student.sex === 'F'
+    const isBoy = student => student.sex === 'M'
+    console.log('isGirl : ', grades.filter(isGirl))
+    console.log('isBoy : ', grades.filter(isBoy))
+
+
+    const average = props => (
+        props.reduce((acc, curr) => (
+            acc + curr.grade
+        ), 0) / props.length
+    )
+    const minGrad = props => (
+        Math.min(...props.map(student => student.grade))
+    )    
+    const maxGrade = props => (
+        Math.max(...props.map(student => student.grade))
+    )
+
+    console.log('Average : ', average(grades) )
+    console.log('AverageGirl : ', average(grades.filter(isGirl)) )
+    console.log('AverageBoy : ', average(grades.filter(isBoy)) )
+    console.log('MaxGrad : ', maxGrade(grades))
+    console.log('MinGrad : ', minGrad(grades))
+
+    
+    
+
+
+</script>
