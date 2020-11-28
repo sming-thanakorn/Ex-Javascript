@@ -1,0 +1,36 @@
+<script>
+    const countDown = (x)=>{
+        if(x<0) return
+        console.log('Count down : ', x)
+        countDown(x - 1)
+    }
+    countDown(10)
+
+    
+
+    // f(1) = 1
+    // f(2) = 2 * f(1) => 2
+    // f(3) = 3 * f(2) => 6
+    // f(4) = 4 * f(3) => 24
+    const factorial = (x)=>{
+        if (x===1) return 1
+        return x * factorial(x - 1)
+    }
+    console.log('Factorial : ',factorial(4))
+
+
+    // c => c
+    // bc => reverse(c) + b
+    // abc => reverse(bc) + a
+    const reverse = (str)=>{
+        if(str.length === 1) return str
+        const [firstChar] = str
+        // const [...AllStr] = str
+        // console.log(AllStr)
+        const remainingChar = str.substring(1)
+        return reverse(remainingChar) + firstChar
+    }
+    console.log('Reverse : ' ,reverse('abc'))
+    // console.log('Reverse : ' ,reverse('ab'))
+
+</script>
