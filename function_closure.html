@@ -1,0 +1,92 @@
+<script>
+    function outer(){
+        const name = 'Ounter'
+        return function inner(){
+            console.log('Outername :', name)
+        }
+    }
+    const css = outer()
+    css()
+
+    const ounterx = ()=>{
+        const name = 'Outer'
+        return ()=>{
+            console.log('Outer:', name)
+        }
+    }
+    ounterx()()
+
+
+
+    // Data Privacy
+    const countx = ()=>{
+        let x = 0
+        return ()=>{
+            x += 1
+            return x
+            // console.log(x)
+        }
+    }
+    // console.log(countx()())
+    const varCount = countx()
+    console.log('First : ', varCount())
+    console.log('Second : ', varCount())
+
+    const clickCount = ()=>{
+        console.log('ClickCountFN : ', varCount())
+    }
+
+    document.body = document.createElement("body")
+    const btn = document.createElement("button")
+    const txt = document.createTextNode("ClickCount")
+    btn.appendChild(txt)
+    btn.addEventListener("click", clickCount, false)
+    document.body.appendChild(btn)
+    
+
+
+
+
+
+    // Stateful Fcuntion
+    const functionAdd = (a)=>{
+        return (b)=>{
+            return a + b
+        }
+    }
+
+    const addA = functionAdd(5)
+    const addB = functionAdd(10)
+
+    console.log('Add-A (20) : ', addA(20))
+    console.log('Add-B (20) : ', addB(20))
+
+    const ClickAddA = ()=>{
+        console.log('ClickAddA (6) : ', addA(6))
+    }
+    const ClickAddB = ()=>{
+        console.log('ClickAddB (7) : ', addB(7))
+    }
+
+    const btnAddA = document.createElement("button")
+    const txtAddA = document.createTextNode("Add-A (6)")
+    const hrA = document.createElement("hr")
+
+    btnAddA.appendChild(txtAddA)
+    btnAddA.addEventListener("click", ClickAddA, false)
+
+    document.body.appendChild(hrA)
+    document.body.appendChild(btnAddA)
+
+
+    const btnAddB = document.createElement("button")
+    const txtAddB = document.createTextNode("Add-B (7)")
+    const hrB = document.createElement("hr")
+
+    document.body.appendChild(hrB)
+    btnAddB.appendChild(txtAddB)
+
+    btnAddB.addEventListener("click", ClickAddB, false)
+    document.body.appendChild(btnAddB)
+
+</script>
