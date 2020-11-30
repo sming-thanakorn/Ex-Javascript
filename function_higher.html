@@ -12,12 +12,21 @@
         {name: 'Donald', grade: 5, sex: 'M'},
         {name: 'Jennifer', grade: 13, sex: 'F'},
         {name: 'Courtney', grade: 15, sex: 'F'},
-        {name: 'Jane', grade: 9, sex: 'F'}
+        {name: 'Jane', grade: 9, sex: 'F'},
+        {name: 'Jane23', grade: 96, sex: ''}
     ]
 
     // Filter Function
-    const isGirl = student => student.sex === 'F'
+    const isGirl = (student) =>{
+        return student.sex === 'F'
+    }
+
     const isBoy = student => student.sex === 'M'
+
+
+    console.log(isGirl(grades[1]))
+    
+
     console.log('isGirl : ', grades.filter(isGirl))
     console.log('isBoy : ', grades.filter(isBoy))
 
@@ -43,5 +52,19 @@
     console.log('MinGrad : ', minGrad(grades))
     console.log('MinGradGirl : ', minGrad(grades.filter(isGirl)))
     console.log('MinGradBoy : ', minGrad(grades.filter(isBoy)))
+
+
+    document.body = document.createElement("body")
+    const btn = document.createElement("button")
+    const nodex = document.createTextNode("ClickMe")
+    const o = document.createTextNode("O")
+    btn.appendChild(nodex)
+    btn.appendChild(o)
+    document.body.appendChild(btn)
+
+    const btn2 = "<button>Click</button>"
+    document.body.innerHTML = btn2
+
+    
 
 </script>
