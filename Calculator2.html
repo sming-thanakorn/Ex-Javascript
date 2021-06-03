@@ -1,0 +1,73 @@
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<style>
+    .xpadding{
+        padding:50px;
+    }
+    .xcenter{
+        text-align:center;
+    }
+    .paddingx{
+        padding-bottom:10px;
+    }
+    .maxwidth{
+        width:60px;
+    }
+    .left{
+        text-align:left;
+    }
+
+</style>
+
+<div class="xpadding xcenter">
+    <div class="row paddingx ">
+        <div class="col-md-4  ">
+            <div class="col-md-10 " style="padding-left:20px; padding-right:0;" >
+                <input type="text" id="inputVariable" onkeypress="Validate_input(this)" onkeydown="Validate_input(this)" onkeyup="Validate_input(this)" onfocusOut="Validate_input(this)" class="form-control" value="" pattern="" title="" >
+            </div>
+            <div  class="col-md-1 "  >
+                <button type="button" id="Cal" onclick="Cal()" class="btn btn-success maxwidth">Cal</button>
+            </div>
+        </div>
+    </div>
+    <div class="row paddingx ">
+        <div class="col-md-4  ">
+            <div class="col-md-12 " style="padding-left:20px; padding-right:0;" >
+                <input type="text" id="result" class="form-control" value="" pattern="" title="" disabled >
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+const Validate_input = (argx) => {
+    let input = argx
+    // input.value = input.value.replace(/([^\/\+\-\*\(\)0-9])/g, "")
+    let i = 0
+    while(i < input.value.length ){
+        input.value = input.value.replace(/[^\/\+\-\*\(\)0-9.]/, "")
+        i++
+    }
+   
+}
+
+const Cal = ()=>{
+    let input = document.getElementById("inputVariable").value
+    try{
+        eval("result="+ input)
+        document.getElementById("result").value = result
+        document.getElementById("result").style.backgroundColor = "#76DB1D";
+    }catch(err){
+        document.getElementById("result").value = "Error! : " + err.message
+        document.getElementById("result").style.backgroundColor = "#F0755B";
+        console.log(err)
+    }
+
+}
+
+</script>
